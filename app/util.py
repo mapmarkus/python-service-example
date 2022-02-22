@@ -56,14 +56,14 @@ class IntSelect(int, enum.Enum):
         return name[1:]
 
 
-def safe_json_loads(raw):
+def safe_dict_json_loads(raw):
     """Transform a string to json (dict) safely
 
     If loading json fails, `{}` is returned instead of raising an exception.
 
         >>> safe_json_loads('')
         {}
-        >>> safe_json_loads('not json')
+        >>> safe_json_loads('not a dict')
         {}
         >>> safe_json_loads(None)
         {}
@@ -79,13 +79,11 @@ def safe_json_loads(raw):
     return {}
 
 
-def safe_json_dumps(data):
+def safe_dict_json_dumps(data):
     """Transform data to a string safely
 
     If data is not a dict, or dumping fails, `'{}'` is returned instead of raising an
     exception.
-
-    TODO: This implementation is incorrect, '' is valid json
 
         >>> safe_json_dumps('')
         '{}'

@@ -5,7 +5,7 @@ from pydantic import BaseModel
 
 import aioredis
 
-from app.util import safe_json_loads, safe_json_dumps
+from app.util import safe_dict_json_loads, safe_dict_json_dumps
 from app.settings import settings
 
 
@@ -79,7 +79,8 @@ class RedisBackend(Backend):
         self.options = RedisBackend.Options(**options).dict(exclude_none=True)
         self.options['address'] = f'redis://{parsed_url.netloc}'
         self._connection = None
-        self.flush_on_disconnect = options.get('flush_on_disconnect', 'False') == 'True'
+        self.flush_on_disconnect = options.get(
+            'flush_on_disconnect', 'False') == 'True'
 
     async def connect(self) -> None:
         self._connection = await aioredis.create_redis_pool(**self.options)
@@ -161,10 +162,10 @@ class Store:
         key: str,
         json_value: typing.Dict[str, typing.Any],
         *,
-        until: bool = None
+        until: int = None
     ) -> None:
         assert self.is_connected, 'Not connected'
-        raw_value = safe_json_dumps(json_value)
+        raw_value = safe_dict_json_dumps(json_value)
         await self.backend.set(key, raw_value, until=until)
 
     async def get_json(
@@ -173,7 +174,7 @@ class Store:
     ) -> typing.Dict[str, typing.Any]:
         assert self.is_connected, 'Not connected'
         raw = await self.backend.get(key)
-        return safe_json_loads(raw)
+        return safe_dict_json_loads(raw)
 
     async def keys(self, pattern: str = '*') -> typing.List[str]:
         assert self.is_connected, 'Not connected'
@@ -189,7 +190,7 @@ class Store:
     ) -> typing.Dict[str, typing.Dict[str, typing.Any]]:
         assert self.is_connected, 'Not connected'
         coll = await self.backend.get_collection(key)
-        return {item: safe_json_loads(val) for item, val in coll.items()}
+        return {item: safe_dict_json_loads(val) for item, val in coll.items()}
 
     async def get_item_json(
         self,
@@ -198,7 +199,7 @@ class Store:
     ) -> typing.Dict[str, typing.Any]:
         assert self.is_connected, 'Not connected'
         raw = await self.backend.get_item(key, item)
-        return safe_json_loads(raw)
+        return safe_dict_json_loads(raw)
 
     async def set_item_json(
         self,
@@ -207,7 +208,7 @@ class Store:
         value: typing.Dict[str, typing.Any]
     ) -> None:
         assert self.is_connected, 'Not connected'
-        await self.backend.set_item(key, item, safe_json_dumps(value))
+        await self.backend.set_item(key, item, safe_dict_json_dumps(value))
 
 
 store = Store(settings.redis.url)
