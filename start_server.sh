@@ -5,6 +5,6 @@ fi
 
 uvicorn \
     --host 0.0.0.0 \
-    --port 80 \
+    --port 7030 \
     --log-level info \
     ${EXTRA_ARGS} app.main:app
