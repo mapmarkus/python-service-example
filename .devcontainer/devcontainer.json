@@ -23,6 +23,11 @@
 		"python.linting.pydocstylePath": "/usr/local/py-utils/bin/pydocstyle",
 		"python.linting.pylintPath": "/usr/local/py-utils/bin/pylint"
 	},
+
+	"containerEnv": {
+		"APP_PORT": "7030",
+		"APP_DEV_MODE": "true"
+	},
 	
 	// Add the IDs of extensions you want installed when the container is created.
 	"extensions": [
