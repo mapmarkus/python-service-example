@@ -2,13 +2,34 @@
 
 Example of python API microservice
 
-This service stores and retrieves session data.
+This is an example service that could be used to store session data.
+
+## Architecture
+
+Key concepts:
+
+- Automate documentation of environment variables
+- Automate api documentation
+- Provide minimalistic scripts to run basic container tasks
+- Provide console for quick diagonostics
+- Provice script to inspect container configuration
+- Consume sub-service apis using an adapter
 
 ## Scripts & Utils
 
 ### Server
 
-TODO
+To run the server
+
+```
+. start_server.sh
+```
+
+This will start a server that listens to port 7030 (both internally and in the host machine)
+
+**API Docs**
+
+Api docs are available on `localhost:7030/docs`
 
 ### Settings
 
