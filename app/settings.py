@@ -6,13 +6,15 @@ from pydantic import BaseSettings, Field
 class AppSettings(BaseSettings):
     """Generic app settings"""
 
+    port: Annotated[Optional[int], Field(
+        description='Application port. Only used by uvicorn process. '
+        'If empty, the server will listen in port 80')] = None
     build_id: Annotated[Optional[str], Field(
         description='Build id')] = 'latest'
     dev_mode: Annotated[bool, Field(
         description='Dev mode', hidden=True)] = False
     test_mode: Annotated[bool, Field(
         description='Test model', hidden=True)] = False
-    test_db: Annotated[str, Field(description='DB for tests')] = 'test-db'
     log_level: Annotated[str, Field(
         description='Log level',
         valid_options=['debug', 'info', 'warning', 'error'])] = 'info'
@@ -95,6 +97,7 @@ class RedisSettings(BaseSettings):
         options['encoding'] = 'utf-8'
 
         if self.flush_on_disconnect:
+            # Use db 9 for tests
             options['db'] = 9
 
         query = '&'.join([f'{k}={v}' for k, v in options.items()])

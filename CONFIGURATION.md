@@ -5,8 +5,8 @@ Generic app settings
 
 | Name | Description | Default |
 | ---- | ---- | ---- |
+| APP_PORT | Application port. Only used by uvicorn process. If empty, the server will listen in port 80 |  |
 | APP_BUILD_ID | Build id | latest |
-| APP_TEST_DB | DB for tests | test-db |
 | APP_LOG_LEVEL | Log level | info |
 
 ## RedisSettings
@@ -18,7 +18,7 @@ Redis connection settings.
 
 | Name | Description | Default |
 | ---- | ---- | ---- |
-| REDIS_HOST <sup>(1)</sup> | Redis host. | redis |
+| REDIS_HOST <sup>(1)</sup> | Redis host. |  |
 | REDIS_PORT |  |  |
 | REDIS_DB |  |  |
 | REDIS_PASSWORD |  |  |
