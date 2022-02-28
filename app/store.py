@@ -20,7 +20,7 @@ class Backend:
     async def get(self, key: str) -> str:
         raise NotImplementedError()
 
-    async def set(self, key: str, raw: str, *, until=None) -> None:
+    async def set(self, key: str, raw: str, *, until: int | None = None) -> None:
         raise NotImplementedError()
 
     async def keys(self, pattern: str = '*') -> typing.List[str]:
@@ -53,7 +53,7 @@ class MemoryBackend(Backend):
     async def get(self, key: str) -> str:
         return self._dict.get(key, '')
 
-    async def set(self, key: str, raw: str, *, until=None) -> None:
+    async def set(self, key: str, raw: str, *, until: int | None = None) -> None:
         self._dict[key] = raw
 
     # async def keys(self, pattern: str = '*') -> typing.List[str]:
@@ -94,7 +94,7 @@ class RedisBackend(Backend):
         await self._connection.wait_closed()
         self._connection = None
 
-    async def set(self, key: str, raw: str, *, until=None) -> None:
+    async def set(self, key: str, raw: str, *, until: int | None = None) -> None:
         await self._connection.set(key, raw)
 
         if until:
