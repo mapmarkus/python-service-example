@@ -1,8 +1,6 @@
-# Session store service
+# Python Service Example
 
-Example of python API microservice
-
-This is an example service that could be used to store session data.
+Example of a Python microservice that exposes an API to allow storing session data.
 
 ## Architecture
 
