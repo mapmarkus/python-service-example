@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta
+from datetime import datetime
 from fastapi import APIRouter, HTTPException
 from pydantic import UUID4
 
@@ -28,5 +28,5 @@ async def post_session(body: SessionBody):
             expires_at=datetime.now() + SESSION_MAX_AGE
         )
         session = {**body.dict(), **timestamps}
-        await store.set_json(STORE_KEY.format(session_id=body.id), session, until=timestamps['expires_at'])
+        await store.set_json(STORE_KEY.format(session_id=body.id), session, until=timestamps['expires_at'].timestamp())
         return session
