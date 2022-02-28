@@ -1,4 +1,4 @@
-# Python Service Example
+# Python Microservice Example
 
 Example of a Python microservice that exposes an API to allow storing session data.
 

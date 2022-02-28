@@ -1,5 +1,5 @@
 {
-  "name": "Python Microservice",
+  "name": "Python Microservice Example",
 
   "dockerComposeFile": "docker-compose.yml",
 
