@@ -1,9 +1,6 @@
 # Microsoft image (contains a lot of useful extras)
 FROM mcr.microsoft.com/vscode/devcontainers/python:0-3.10-bullseye
 
-WORKDIR /service
-COPY . /service
-
 # Prevents Python from writing pyc files to disc
 ENV PYTHONDONTWRITEBYTECODE 1
 
