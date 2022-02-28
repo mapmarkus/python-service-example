@@ -40,4 +40,4 @@
 #
 # -W PYTHONGWARNINGS        Show python warning (this can be set to "error" to
 #                           force test errors if a warning is found)
-SERVICE_DB_NAME=test SERVICE_TEST_MODE=True pytest -Wignore -v ${*:-tests}
+APP_TEST_MODE=True pytest -Wignore -v ${*:-tests}

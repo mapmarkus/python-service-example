@@ -107,9 +107,9 @@ class RedisSettings(BaseSettings):
     class Config:
         env_prefix = 'REDIS_'
         fields = {
-            'minsize': {'env': 'service_redis_min_pool_size'},
-            'maxsize': {'env': 'service_redis_max_pool_size'},
-            'flush_on_disconnect': {'env': 'serivce_test_mode'}
+            'minsize': {'env': 'redis_min_pool_size'},
+            'maxsize': {'env': 'redis_max_pool_size'},
+            'flush_on_disconnect': {'env': 'app_test_mode'}
         }
 
 
