@@ -12,6 +12,7 @@ Key concepts:
 - Provide console for quick diagonostics
 - Provice script to inspect container configuration
 - Consume sub-service apis using an adapter
+- Fully tested API
 
 ## Scripts & Utils
 
