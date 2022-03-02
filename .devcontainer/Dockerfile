@@ -11,7 +11,7 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
 # To be able to use absolute import paths
-ENV PYTHONPATH=/service
+ENV PYTHONPATH=/workspace
 
 # Use latest version of pip
 RUN pip install --upgrade pip
